@@ -1,0 +1,2 @@
+
+import { IDeleteCategory } from "./types";
