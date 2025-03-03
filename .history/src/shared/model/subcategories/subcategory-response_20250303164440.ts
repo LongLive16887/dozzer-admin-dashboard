@@ -16,4 +16,4 @@ interface ISubCategoryResponse{
     } | number
 }
 
-export type {ISubCategoryResponse, ISubCategoryResponseObject};
+export type {ISubCategoryResponse, ISubCategoryResponseObject,ISubCategorySuccesResponse};

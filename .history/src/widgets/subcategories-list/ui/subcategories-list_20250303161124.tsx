@@ -93,24 +93,14 @@ export const SubCategoriesList = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {typeof dataCategories?.data === "object" && dataCategories.data.results.length > 0 ? (dataCategories.data.results.map((subCategory) => (
+            {dataCategories?.data?.results.map((subCategory) => (
                 <SubCategory
                     key={subCategory.id}
                     subCategory={subCategory}
                     updateFeature={<UpdateSubcategory updateSubCategoryData={subCategory} />}
                     deleteFeature={<DeleteSubCategory deleteSubCategoryId={subCategory.id} />}
                 />
-            ))
-            ) : (
-              <div className="flex flex-1 flex-col items-center justify-center h-full p-4">
-              <div className="text-center rounded-xl bg-muted/50 p-6">
-                <p className="text-lg font-semibold">⚠ No Subcategories Yet</p>
-                <Link to="/categories" className="text-blue-500 underline mt-2 inline-block">
-                  Go to Categories Page
-                </Link>
-              </div>
-              </div>
-            )}
+            ))}
           </TableBody>
         </Table>
       </div>

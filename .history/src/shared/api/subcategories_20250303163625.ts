@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISubCategory,ISubCategoryResponse,/* ISubCategoryResponseObject */ } from "../model/subcategories";
+import { ISubCategory,ISubCategoryResponse,/* ISubCategoryResponseObject */ ISubCategorySuccesResponse} from "../model/subcategories";
 
 export const SubCategoriesApi = createApi({
   reducerPath: "SubCategoriesApi",
@@ -20,7 +20,7 @@ export const SubCategoriesApi = createApi({
   tagTypes: ["SubCategory"],
   endpoints: (builder) => ({
 
-    createSubCategory: builder.mutation<ISubCategoryResponse, ISubCategory>({
+    createSubCategory: builder.mutation<ISubCategorySuccesResponse, ISubCategory>({
       query: (subCategory) => ({
         url: "/v1/base/sub-category",
         method: "POST",
@@ -43,7 +43,7 @@ export const SubCategoriesApi = createApi({
         providesTags: ["SubCategory"],
       }),
       
-    updateSubCategory: builder.mutation<ISubCategoryResponse,{id: string; subCategory: ISubCategory}>({
+    updateSubCategory: builder.mutation<ISubCategorySuccesResponse,{id: string; subCategory: ISubCategory}>({
       query: ({ id, subCategory }) => ({
         url: `/v1/base/sub-category/${id}`,
         method: "PUT",
@@ -52,7 +52,7 @@ export const SubCategoriesApi = createApi({
       invalidatesTags: ["SubCategory"],
     }),
 
-    deleteSubCategory: builder.mutation<ISubCategoryResponse, string>({
+    deleteSubCategory: builder.mutation<ISubCategorySuccesResponse, string>({
         query: (id) => ({
             url: `/v1/base/sub-category/${id}`,
             method: "DELETE",

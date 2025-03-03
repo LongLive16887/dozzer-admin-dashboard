@@ -104,7 +104,7 @@ export const SubCategoriesList = () => {
             ) : (
               <div className="flex flex-1 flex-col items-center justify-center h-full p-4">
               <div className="text-center rounded-xl bg-muted/50 p-6">
-                <p className="text-lg font-semibold">⚠ No Subcategories Yet</p>
+                <p className="text-lg font-semibold">⚠ no subcategories yet</p>
                 <Link to="/categories" className="text-blue-500 underline mt-2 inline-block">
                   Go to Categories Page
                 </Link>

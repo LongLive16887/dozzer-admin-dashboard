@@ -43,7 +43,7 @@ export const SubCategoriesApi = createApi({
         providesTags: ["SubCategory"],
       }),
       
-    updateSubCategory: builder.mutation<ISubCategoryResponse,{id: string; subCategory: ISubCategory}>({
+    updateSubCategory: builder.mutation<ISubCategorySuccesResponse,{id: string; subCategory: ISubCategory}>({
       query: ({ id, subCategory }) => ({
         url: `/v1/base/sub-category/${id}`,
         method: "PUT",
@@ -52,7 +52,7 @@ export const SubCategoriesApi = createApi({
       invalidatesTags: ["SubCategory"],
     }),
 
-    deleteSubCategory: builder.mutation<ISubCategoryResponse, string>({
+    deleteSubCategory: builder.mutation<ISubCategorySuccesResponse, string>({
         query: (id) => ({
             url: `/v1/base/sub-category/${id}`,
             method: "DELETE",

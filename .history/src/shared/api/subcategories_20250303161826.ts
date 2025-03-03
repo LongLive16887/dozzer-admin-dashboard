@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISubCategory,ISubCategoryResponse,/* ISubCategoryResponseObject */ } from "../model/subcategories";
+import { ISubCategory,ISubCategoryResponse,/* ISubCategoryResponseObject */ ISu} from "../model/subcategories";
 
 export const SubCategoriesApi = createApi({
   reducerPath: "SubCategoriesApi",
@@ -34,12 +34,6 @@ export const SubCategoriesApi = createApi({
           url: `/v1/base/sub-category/${id}`,
           method: "GET",
         }),
-        transformResponse: (response: any): ISubCategoryResponse => {
-          if (!response || typeof response !== "object" || response.error === undefined || !response.data) {
-              throw new Error("Некорректный формат ответа API");
-          }
-          return response as ISubCategoryResponse;
-      },
         providesTags: ["SubCategory"],
       }),
       

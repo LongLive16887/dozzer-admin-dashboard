@@ -94,7 +94,7 @@ export const CategoriesList = () => {
           ) : (
             <div className="flex flex-1 flex-col items-center justify-center h-full p-4">
             <div className="text-center rounded-xl bg-muted/50 p-6">
-              <p className="text-lg font-semibold">⚠ No Categories Yet</p>
+              <p className="text-lg font-semibold">⚠ No Subcategories Yet, Plea</p>
             </div>
             </div>
           )}

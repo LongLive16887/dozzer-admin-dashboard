@@ -8,12 +8,16 @@ interface ISubCategoryResponseObject {
 
 /* CRUD response */
 
+interface ISubCategorySuccesResponse {
+    erro
+}
+
 interface ISubCategoryResponse{
     error: boolean;
     data: {
         results: ISubCategoryResponseObject[],
         count: number;
-    } | number
+    } | number;
 }
 
 export type {ISubCategoryResponse, ISubCategoryResponseObject};

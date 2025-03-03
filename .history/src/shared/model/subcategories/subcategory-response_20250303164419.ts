@@ -8,6 +8,11 @@ interface ISubCategoryResponseObject {
 
 /* CRUD response */
 
+interface ISubCategorySuccesResponse {
+    error: boolean;
+    data: number;
+}
+
 interface ISubCategoryResponse{
     error: boolean;
     data: {
@@ -16,4 +21,4 @@ interface ISubCategoryResponse{
     } | number
 }
 
-export type {ISubCategoryResponse, ISubCategoryResponseObject};
+export type {ISubCategoryResponse, ISubCategoryResponseObject,ISubCategorySuccesResponse};

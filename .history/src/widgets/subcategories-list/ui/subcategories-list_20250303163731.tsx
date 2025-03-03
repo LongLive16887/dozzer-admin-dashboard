@@ -35,7 +35,7 @@ export const SubCategoriesList = () => {
   }
 
   const { data, isLoading, error } = useGetSubCategoriesQuery({ id: categoryId });
-  const dataCategories = data;
+  const dataCategories = data?.data;
 
 
   if (isLoading) {
@@ -93,7 +93,7 @@ export const SubCategoriesList = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {typeof dataCategories?.data === "object" && dataCategories.data.results.length > 0 ? (dataCategories.data.results.map((subCategory) => (
+            { dataCategories?.results?.length > 0  ? (dataCategories.map((subCategory) => (
                 <SubCategory
                     key={subCategory.id}
                     subCategory={subCategory}
@@ -104,7 +104,7 @@ export const SubCategoriesList = () => {
             ) : (
               <div className="flex flex-1 flex-col items-center justify-center h-full p-4">
               <div className="text-center rounded-xl bg-muted/50 p-6">
-                <p className="text-lg font-semibold">⚠ No Subcategories Yet</p>
+                <p className="text-lg font-semibold">⚠ Please select a sub category in categories page</p>
                 <Link to="/categories" className="text-blue-500 underline mt-2 inline-block">
                   Go to Categories Page
                 </Link>
