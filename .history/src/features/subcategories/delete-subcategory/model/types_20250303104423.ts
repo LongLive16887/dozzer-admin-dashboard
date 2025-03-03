@@ -1,0 +1,3 @@
+interface IDeleteSubCategory {
+    deleteSubCategoryId
+}

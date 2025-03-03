@@ -1,0 +1,23 @@
+import { ISubCategory } from "../model";
+import { TableCell, TableRow } from "@/shared/ui/table";
+
+export const SubCategory = ({
+        subCategory,
+        veiwFeature,
+    }: ISubCategory ) => {
+    
+    return(
+        <TableRow key={category.id}>
+            <TableCell>{category.id ?? "No Data"}</TableCell>
+            <TableCell>{category.created_by ?? "No Data"}</TableCell>
+            <TableCell>{category.updated_by ?? "No Data"}</TableCell>
+            <TableCell>
+                <img src={category.image_url} alt="Icon" width={40} height={40} />
+            </TableCell>
+            <TableCell>{category.name ?? "No Data"}</TableCell>
+            <TableCell className="flex flex-row-reverse gap-5" align="right">
+                {veiwFeature}
+            </TableCell>
+        </TableRow>
+    )
+}

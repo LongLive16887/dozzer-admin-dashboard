@@ -1,0 +1,1 @@
+import { IViewSubCategory } from "./type";

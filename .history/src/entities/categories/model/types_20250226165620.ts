@@ -1,4 +1,4 @@
-import { ICategoryResponse } from "@/shared/model/feed-categories";
+import { ICategoryResponse } from "@/shared/model/-categories";
 
 interface ICategory {
   category: ICategoryResponse;
