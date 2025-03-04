@@ -1,0 +1,6 @@
+
+
+
+interface IBase {
+    base: 
+}

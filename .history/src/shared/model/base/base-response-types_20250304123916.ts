@@ -1,0 +1,4 @@
+interface IBaseResponseObject {
+    id: string;
+    
+}

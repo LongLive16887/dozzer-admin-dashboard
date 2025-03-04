@@ -1,0 +1,4 @@
+interface IBase {
+    name: string;
+    
+} 

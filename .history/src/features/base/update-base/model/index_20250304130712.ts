@@ -1,0 +1,1 @@
+import { IUpdateBase } from "./types";
