@@ -21,7 +21,7 @@ export const AppHeader = ({
 }: IAppHeader) => {
   const navigateTo = useNavigate();
   const { categoryId } = useParams();
-  const {subcategoryId} = useParams();
+  const {sub}
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
@@ -54,50 +54,39 @@ export const AppHeader = ({
                 </BreadcrumbItem>
               </>
             )}
-            {!isInDashboardPage && categoryId && !subcategoryId &&(
+            {!isInDashboardPage && categoryId && (
               <>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                <BreadcrumbLink
+                  <BreadcrumbLink
                     className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo("/categories")}
+                    onClick={() => navigateTo("/feeds")}
                   >
-                    Categories
+                    {breadcrumbItemName}
                   </BreadcrumbLink>
-                  
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{breadcrumbItemName}</BreadcrumbPage>
+                  <BreadcrumbPage>Category ID: {categoryId}</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
             )}
-            {!isInDashboardPage && categoryId && subcategoryId && (
+            {!isInDashboardPage && categoryId && subcategoyId &&(
               <>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                <BreadcrumbLink
+                  <BreadcrumbLink
                     className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo("/categories")}
+                    onClick={() => navigateTo("/feeds")}
                   >
-                    Categories
+                    {breadcrumbItemName}
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                <BreadcrumbLink
-                    className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo(`/categories/${categoryId}/sub-categories/`)}
-                  >
-                    Sub Categories
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                <BreadcrumbPage>{breadcrumbItemName}</BreadcrumbPage>
+                  <BreadcrumbPage>Category ID: {categoryId}</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
-              
             )}
           </BreadcrumbList>
         </Breadcrumb>

@@ -54,47 +54,37 @@ export const AppHeader = ({
                 </BreadcrumbItem>
               </>
             )}
-            {!isInDashboardPage && categoryId && !subcategoryId &&(
+            {!isInDashboardPage && categoryId && (
               <>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                <BreadcrumbLink
-                    className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo("/categories")}
-                  >
-                    Categories
-                  </BreadcrumbLink>
-                  
+                  <BreadcrumbPage>Categories</BreadcrumbPage>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{breadcrumbItemName}</BreadcrumbPage>
+                  <BreadcrumbLink
+                    className="transition-colors cursor-pointer"
+                    onClick={() => navigateTo("/feeds")}
+                  >
+                    {breadcrumbItemName}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               </>
             )}
-            {!isInDashboardPage && categoryId && subcategoryId && (
+            {!isInDashboardPage && categoryId && subcategoryId &&(
               <>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                <BreadcrumbLink
-                    className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo("/categories")}
-                  >
-                    Categories
-                  </BreadcrumbLink>
+                  <BreadcrumbPage>Categories</BreadcrumbPage>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                <BreadcrumbLink
+                  <BreadcrumbLink
                     className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo(`/categories/${categoryId}/sub-categories/`)}
+                    onClick={() => navigateTo("/feeds")}
                   >
-                    Sub Categories
+                    {breadcrumbItemName}
                   </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                <BreadcrumbPage>{breadcrumbItemName}</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
               

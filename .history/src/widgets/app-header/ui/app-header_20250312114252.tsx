@@ -87,7 +87,7 @@ export const AppHeader = ({
                 <BreadcrumbItem>
                 <BreadcrumbLink
                     className="transition-colors cursor-pointer"
-                    onClick={() => navigateTo(`/categories/${categoryId}/sub-categories/`)}
+                    onClick={() => navigateTo("/categories")}
                   >
                     Sub Categories
                   </BreadcrumbLink>

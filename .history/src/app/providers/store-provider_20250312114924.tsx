@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { store } from "../store";
 
 interface IAppProviders {
-  children: React.JSX.Element;
+  children: REACTJSX.Element;
 }
 
 export const StoreProvider: React.FC<IAppProviders> = ({ children }) => {
