@@ -82,7 +82,7 @@ export const UpdateBase = ({ updateBaseId }: { updateBaseId: string }) => {
     <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>
         <Button className="cursor-pointer min-w-[40px]" variant="default" disabled={isFetching}>
-          <Pencil/>
+          <RefreshCcw/>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] sm:max-h-[650px] overflow-scroll">

@@ -150,6 +150,7 @@ export const CreateItem = () => {
               Cancel
             </Button>
           </DialogFooter>
+          {console.log(2)}
         </form>
       </DialogContent>
     </Dialog>

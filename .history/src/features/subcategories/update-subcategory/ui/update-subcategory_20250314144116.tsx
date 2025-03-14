@@ -54,7 +54,7 @@ export const UpdateSubcategory = ({ updateSubCategoryData }: UpdateSubcategoryPr
     <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>
         <Button className="cursor-pointer min-w-[40px]" variant="default">
-          <Pencil/>
+          <RefreshCcw/>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] sm:max-h-[550px] overflow-scroll">

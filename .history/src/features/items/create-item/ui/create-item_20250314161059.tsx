@@ -128,6 +128,7 @@ export const CreateItem = () => {
             <Input value={categoryId} disabled />
             <Label>Subcategory ID</Label>
             <Input value={subcategoryId} disabled />
+            {c}
             <Label>Base</Label>
             <Select onValueChange={(value) => setFormData({ ...formData, base_id: value })}>
               <SelectTrigger>

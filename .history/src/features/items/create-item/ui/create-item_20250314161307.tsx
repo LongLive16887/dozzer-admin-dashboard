@@ -98,6 +98,7 @@ export const CreateItem = () => {
 
   return (
     <Dialog open={showModal} onOpenChange={setShowModal}>
+      
       <DialogTrigger asChild>
         <Button className="cursor-pointer" onClick={() => setShowModal(true)}>
           <Plus /> Item
