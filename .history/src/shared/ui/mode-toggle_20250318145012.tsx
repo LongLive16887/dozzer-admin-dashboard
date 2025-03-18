@@ -19,7 +19,7 @@ export const ModeToggle = () => {
   const updateMetaThemeColor = (mode: string) => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", mode === "dark" ? "#0a0a0a" : "#ffffff");
+      metaThemeColor.setAttribute("content", mode === "dark" ? "##0a0a0a" : "#ffffff");
     }
   };
 
