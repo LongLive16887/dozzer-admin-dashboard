@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/shared/ui/sidebar";
-import Icon from "/icons/icon-64x64.png"
+import Icon from "../../../../public/icons/icon-64x64.png"
 import { navMain } from "../model";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
