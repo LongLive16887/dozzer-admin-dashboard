@@ -18,7 +18,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'images-cache',
-              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 7 }
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 7 }
             }
           },
           {
@@ -26,7 +26,7 @@ export default defineConfig({
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'static-resources-cache',
-              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 }
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 7 }
             }
           }
         ]
@@ -36,6 +36,18 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
+    }
+  },
+  build: {
+    chunkSizeWarningLimit: 500, // Уменьшает размер чанков
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'; // Выносит зависимости в отдельный чанк
+          }
+        }
+      }
     }
   },
   server: {

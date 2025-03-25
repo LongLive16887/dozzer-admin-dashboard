@@ -9,7 +9,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'autoUpdate', // Автоматическое обновление PWA
+      manifest: 'public/manifest.json',
       workbox: {
         cleanupOutdatedCaches: true,
         runtimeCaching: [

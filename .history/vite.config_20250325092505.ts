@@ -10,6 +10,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      manifest: 'public/manifest.json',
       workbox: {
         cleanupOutdatedCaches: true,
         runtimeCaching: [

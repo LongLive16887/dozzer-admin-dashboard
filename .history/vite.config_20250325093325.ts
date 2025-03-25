@@ -18,7 +18,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'images-cache',
-              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 7 }
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 7 }
             }
           },
           {
@@ -26,7 +26,15 @@ export default defineConfig({
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'static-resources-cache',
-              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 }
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 7 }
+            }
+          },
+          {
+            urlPattern: ({ request }) => request.destination === 'document',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'html-cache',
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 }
             }
           }
         ]
