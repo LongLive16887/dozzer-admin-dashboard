@@ -1,3 +1,0 @@
-interface IPostCategory {
-    img
-}

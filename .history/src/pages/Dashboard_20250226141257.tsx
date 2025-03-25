@@ -1,7 +1,0 @@
-
-
-export const DashboardPage = () => {
-  return (
-    <h1>Main Dashboard</h1>
-  );
-};

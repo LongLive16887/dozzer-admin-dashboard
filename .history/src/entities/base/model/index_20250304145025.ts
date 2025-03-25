@@ -1,2 +1,0 @@
-import {IBase} from "./types"
-

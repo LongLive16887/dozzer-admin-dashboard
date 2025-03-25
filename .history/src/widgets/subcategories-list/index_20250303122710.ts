@@ -1,1 +1,0 @@
-import { SubCategoriesList } from "./ui";

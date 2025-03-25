@@ -1,1 +1,0 @@
-import { IDeleteSubCategory } from "./types";

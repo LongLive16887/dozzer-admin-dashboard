@@ -1,2 +1,0 @@
-
-import { Categories } from "./categories";

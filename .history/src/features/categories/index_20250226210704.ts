@@ -1,1 +1,0 @@
-import { DeleteCategory,Upda } from "./delete-category";

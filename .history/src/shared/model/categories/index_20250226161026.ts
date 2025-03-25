@@ -1,1 +1,0 @@
-import { IPostCategory } from "./post-category-types";

@@ -1,3 +1,0 @@
-interface IDeleteCategory {
-    updateCategoryId: number;
-}

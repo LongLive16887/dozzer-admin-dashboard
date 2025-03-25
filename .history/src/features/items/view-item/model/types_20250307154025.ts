@@ -1,3 +1,0 @@
-interface IViewItem {
-    itemId: string
-}
