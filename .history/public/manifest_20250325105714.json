@@ -51,7 +51,7 @@
         },
         {
           "src": "/images/screenshot-mobile.png",
-          "sizes": "1080x2460",
+          "sizes": "1080x1920",
           "type": "image/png",
           "form_factor": "narrow"
         }
