@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISubCategory,ISubCategoryResponse,/* ISubCategoryResponseObject */ } from "../model/subcategories";
+import { ISubCategory,ISubCategoryResponse,/* ISubCategoryResponseObject */IDeleteSubCategoryResponse } from "../model/subcategories";
 import {IGetSubCategoryResponse} from "../model/subcategories";
 
 export const SubCategoriesApi = createApi({
@@ -47,7 +47,7 @@ export const SubCategoriesApi = createApi({
       invalidatesTags: ["SubCategory"],
     }),
 
-    deleteSubCategory: builder.mutation<ISubCategoryResponse, string>({
+    deleteSubCategory: builder.mutation<IDeleteSubCategoryResponse, string>({
         query: (id) => ({
             url: `/v1/base/sub-category/${id}`,
             method: "DELETE",

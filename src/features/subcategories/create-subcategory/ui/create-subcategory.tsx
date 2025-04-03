@@ -17,8 +17,8 @@ import { Label } from "@/shared/ui/label";
 
 
 export const CreateSubСategory = () => {
-  
-  const [name, setName] = useState("");
+  const [name_uz, setUzName] = useState("");
+  const [name_ru, setRuName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [createSubCategory, { isLoading }] = useCreateSubCategoryMutation();
@@ -28,7 +28,8 @@ export const CreateSubСategory = () => {
     e.preventDefault();
 
     const subcategory = {
-      name,
+      name_ru,
+      name_uz,
       image_url: imageUrl,
       category_id: categoryId!
     };
@@ -37,7 +38,8 @@ export const CreateSubСategory = () => {
       const response = await createSubCategory(subcategory).unwrap();
       console.log("Created subcategory:", response);
       setShowModal(false);
-      setName("");
+      setRuName("");
+      setUzName("");
       setImageUrl("");
     } catch (err) {
       console.error("Error creating subcategory:", err);
@@ -61,14 +63,27 @@ export const CreateSubСategory = () => {
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-center">
-                Name
+              <Label htmlFor="name_uz" className="text-center">
+                Name UZ
               </Label>
               <Input
-                id="name"
-                value={name}
+                id="name_uz"
+                value={name_uz}
                 placeholder="Subcategory Name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setUzName(e.target.value)}
+                className="col-span-3"
+                required
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name_ru" className="text-center">
+                Name RU
+              </Label>
+              <Input
+                id="name_ru"
+                value={name_ru}
+                placeholder="Subcategory Name"
+                onChange={(e) => setRuName(e.target.value)}
                 className="col-span-3"
                 required
               />

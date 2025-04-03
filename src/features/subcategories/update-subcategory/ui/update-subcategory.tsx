@@ -23,7 +23,8 @@ interface UpdateSubcategoryProps {
 
 export const UpdateSubcategory = ({ updateSubCategoryData }: UpdateSubcategoryProps) => {
   const [updateSubCategory, { isLoading: isUpdating }] = useUpdateSubCategoryMutation();
-  const [name, setName] = useState(updateSubCategoryData.name);
+  const [name_ru, setRuName] = useState(updateSubCategoryData.name_ru);
+  const [name_uz, setUzName] = useState(updateSubCategoryData.name_uz);
   const [imageUrl, setImageUrl] = useState(updateSubCategoryData.image_url || "");
   const [showModal, setShowModal] = useState(false);
 
@@ -32,7 +33,8 @@ export const UpdateSubcategory = ({ updateSubCategoryData }: UpdateSubcategoryPr
 
     const updatedSubcategory = {
       id: updateSubCategoryData.id,
-      name,
+      name_ru,
+      name_uz,
       image_url: imageUrl,
       category_id: updateSubCategoryData.category_id,
     };
@@ -73,13 +75,24 @@ export const UpdateSubcategory = ({ updateSubCategoryData }: UpdateSubcategoryPr
               <Input id="id" value={updateSubCategoryData.id} className="col-span-3" disabled />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-center">
-                Name
+              <Label htmlFor="name_uz" className="text-center">
+                Name UZ
               </Label>
               <Input
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                id="name_uz"
+                value={name_uz}
+                onChange={(e) => setUzName(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name_ru" className="text-center">
+                Name RU
+              </Label>
+              <Input
+                id="name_ru"
+                value={name_ru}
+                onChange={(e) => setRuName(e.target.value)}
                 className="col-span-3"
               />
             </div>

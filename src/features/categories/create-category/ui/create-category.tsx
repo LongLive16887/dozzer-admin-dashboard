@@ -15,7 +15,8 @@ import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
 
 export const CreateCategory = () => {
-  const [name, setName] = useState("");
+  const [name_ru,setRuName] = useState("");
+  const [name_uz, setUzName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [createCategory, { isLoading }] = useCreateCategoryMutation();
@@ -24,7 +25,8 @@ export const CreateCategory = () => {
     e.preventDefault();
 
     const category = {
-      name,
+      name_ru,
+      name_uz,
       image_url: imageUrl,
     };
 
@@ -32,7 +34,8 @@ export const CreateCategory = () => {
       const response = await createCategory(category).unwrap();
       console.log("Created category:", response);
       setShowModal(false);
-      setName("");
+      setUzName("");
+      setRuName("");
       setImageUrl("");
     } catch (err) {
       console.error("Error creating category:", err);
@@ -55,15 +58,28 @@ export const CreateCategory = () => {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-center">
-                Name
+          <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name_uz" className="text-center">
+                Name UZ
               </Label>
               <Input
-                id="name"
-                value={name}
-                placeholder="Category Name"
-                onChange={(e) => setName(e.target.value)}
+                id="name_uz"
+                value={name_uz}
+                placeholder="Category Name Uz"
+                onChange={(e) => setUzName(e.target.value)}
+                className="col-span-3"
+                required
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name_ru" className="text-center">
+                Name RU
+              </Label>
+              <Input
+                id="name_ru"
+                value={name_ru}
+                placeholder="Category Name Ru"
+                onChange={(e) => setRuName(e.target.value)}
                 className="col-span-3"
                 required
               />

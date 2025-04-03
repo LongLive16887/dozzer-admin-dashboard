@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {ICategory,ICategoryResponse,IGetCategoryResponse} from "../model/categories";
+import {ICategory,ICategoryResponse,IGetCategoryResponse,IDeleteCategoryResponse} from "../model/categories";
 
 export const CategoriesApi = createApi({
   reducerPath: "CategoriesApi",
@@ -46,7 +46,7 @@ export const CategoriesApi = createApi({
       invalidatesTags: ["Category"],
     }),
 
-    deleteCategory: builder.mutation<ICategoryResponse, string>({
+    deleteCategory: builder.mutation<IDeleteCategoryResponse, string>({
         query: (id) => ({
             url: `/v1/base/category/${id}`,
             method: "DELETE",

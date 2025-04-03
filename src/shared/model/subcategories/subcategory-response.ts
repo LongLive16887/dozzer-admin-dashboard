@@ -1,16 +1,25 @@
 /* Sub Category object*/
 interface ISubCategoryResponseObject {
     id: string;
-    name: string;
+    name_uz: string;
+    name_ru: string;
     image_url?: string;
     category_id: string;
 } 
 
 /* CRUD response */
 
+interface IDeleteSubCategoryResponse{
+    error: boolean;
+    data: number;
+}
+
 interface ISubCategoryResponse{
     error: boolean;
-    data: number
+    data: {
+        id: string;
+        status: number;
+    }
 }
 
 interface IGetSubCategoryResponse{
@@ -21,4 +30,4 @@ interface IGetSubCategoryResponse{
     }
 }
 
-export type {ISubCategoryResponse, ISubCategoryResponseObject,IGetSubCategoryResponse};
+export type {ISubCategoryResponse, ISubCategoryResponseObject,IGetSubCategoryResponse,IDeleteSubCategoryResponse};

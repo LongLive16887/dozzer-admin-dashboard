@@ -1,5 +1,5 @@
 import { ICategory } from "./category-types";
-import { ICategoryResponse,IGetCategoryResponse,ICategoryResponseObject } from "./category-response-types";
+import { ICategoryResponse,IGetCategoryResponse,ICategoryResponseObject ,IDeleteCategoryResponse} from "./category-response-types";
 
 
-export type {ICategory,ICategoryResponse,ICategoryResponseObject,IGetCategoryResponse};
+export type {ICategory,ICategoryResponse,ICategoryResponseObject,IGetCategoryResponse,IDeleteCategoryResponse};

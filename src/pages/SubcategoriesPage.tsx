@@ -11,7 +11,7 @@ const SubcategoriesPage = () => {
         <AppHeader 
         isInDashboardPage = {false}
         breadcrumbItemName="Sub Categories"
-        hasLangSelector={false}
+        hasLangSelector={true}
         actionButton={<CreateSubСategory/>} 
         />
         <SubCategoriesList/>
