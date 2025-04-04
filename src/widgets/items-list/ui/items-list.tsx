@@ -81,6 +81,7 @@ export const ItemsList = () => {
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4">
+      <h1 className="p-1 w-fit bg-gray-100 dark:bg-gray-800 rounded-md "><span className="text-blue-500">Subcategory ID:</span>  {subcategoryId}</h1>
       <div className="rounded-xl bg-muted/50 p-4">
         <Table className="">
           <TableHeader>

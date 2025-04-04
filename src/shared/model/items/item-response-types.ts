@@ -23,8 +23,6 @@ interface IItemResponseObject {
     description_uz: string;
     description_ru: string;
     sub_category_id: string;
-    category_id: string;
-    base_id: string;
   }
   
   interface IGetItemByIdResponse{

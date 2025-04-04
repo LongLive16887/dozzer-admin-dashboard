@@ -23,9 +23,9 @@ export const CreateItem = () => {
   const {categoryId,subcategoryId} = location.state || {};
   
   const getDateTime = () => {
-    const now = new Date();
-    return now.toISOString().slice(0, 16).replace("T", " ");
+    return new Date().toISOString();
   };
+  
 
   const [formData, setFormData] = useState({
     name_uz: "",
@@ -55,10 +55,14 @@ export const CreateItem = () => {
         ? value === "" ? "" : Number(value)
         : value,
     });
+    
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log(categoryId)
+    console.log(subcategoryId);
 
     const itemData = {
       ...formData,
@@ -71,6 +75,8 @@ export const CreateItem = () => {
       hourly_price: formData.hourly_price === "" ? 0 : Number(formData.hourly_price),
       begin_date: getDateTime()
     };
+
+    console.log(itemData);
 
     try {
       await createItem(itemData).unwrap();

@@ -120,10 +120,10 @@ export const ViewItem = ({ itemId }: { itemId: string }) => {
             <Label className="font-semibold">Begin Date:</Label>
             <p className="p-2 bg-gray-100 dark:bg-gray-800 rounded-md">{new Date(result.begin_date).toLocaleString()}</p>
           </div>
-          
+
           <div className="space-y-1">
-            <Label className="font-semibold">Base ID</Label>
-            <p className="p-2 bg-gray-100 dark:bg-gray-800 rounded-md">{result.base_id}</p>
+            <Label className="font-semibold">Sub Category ID</Label>
+            <p className="p-2 bg-gray-100 dark:bg-gray-800 rounded-md">{result.sub_category_id}</p>
           </div>
 
           <div className="space-y-1">

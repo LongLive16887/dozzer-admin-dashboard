@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useCreateSubCategoryMutation } from "@/shared/api/subcategories";
 import { Button } from "@/shared/ui/button";
 import { Plus } from "lucide-react";
@@ -22,7 +22,9 @@ export const CreateSubСategory = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [createSubCategory, { isLoading }] = useCreateSubCategoryMutation();
-  const { categoryId } = useParams();
+
+  const location = useLocation();
+  const {categoryId} = location.state || {};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +37,7 @@ export const CreateSubСategory = () => {
     };
 
     try {
+      console.log(subcategory)
       const response = await createSubCategory(subcategory).unwrap();
       console.log("Created subcategory:", response);
       setShowModal(false);

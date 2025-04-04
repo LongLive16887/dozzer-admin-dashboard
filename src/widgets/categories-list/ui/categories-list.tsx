@@ -98,7 +98,7 @@ export const CategoriesList = () => {
                   category={category}
                   updateFeature={<UpdateCategory updateCategoryData={category} />}
                   deleteFeature={<DeleteCategory deleteCategoryId={category.id} />}
-                  viewFeature={<ViewSubCategory categoryName={category.name} categoryId={category.id}/>}
+                  viewFeature={<ViewSubCategory categoryName={category.name_uz} categoryId={category.id}/>}
               />
           ))}
           </TableBody>

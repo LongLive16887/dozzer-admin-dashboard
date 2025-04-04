@@ -21,7 +21,6 @@ import { Skeleton } from "@/shared/ui/skeleton";
 export const SubCategoriesList = () => {
   const location = useLocation();
   const {categoryId,categoryName} = location.state || {};
-
   const { data, isLoading, error } = useGetSubCategoriesQuery({ id: categoryId! });
   const dataCategories = data?.data.results || [];
 
@@ -103,7 +102,7 @@ export const SubCategoriesList = () => {
                     subCategory={subCategory}
                     updateFeature={<UpdateSubcategory updateSubCategoryData={subCategory} />}
                     deleteFeature={<DeleteSubCategory deleteSubCategoryId={subCategory.id} />}
-                    viewItems={<ViewItems subcategoryName={subCategory.name} subcategoryId={subCategory.id} categoryId={categoryId!} categoryName = {categoryName!}/>}
+                    viewItems={<ViewItems subcategoryName={subCategory.name_ru} subcategoryId={subCategory.id} categoryId={categoryId!} categoryName = {categoryName!}/>}
                 />
             ))}
           </TableBody>
