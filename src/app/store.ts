@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { CategoriesApi , SubCategoriesApi,BaseApi,ItemsApi} from "@/shared/api";
 import { languageReducer } from "@/shared/hooks";
+import authReducer from "@/shared/hooks/authSlice"
+import { AuthApi } from "@/shared/api";
 
 export const store = configureStore({
   reducer: {
@@ -8,7 +10,9 @@ export const store = configureStore({
     [SubCategoriesApi.reducerPath]: SubCategoriesApi.reducer,
     [BaseApi.reducerPath]: BaseApi.reducer,
     [ItemsApi.reducerPath]: ItemsApi.reducer,
+    [AuthApi.reducerPath]: AuthApi.reducer,
     language: languageReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -22,7 +26,8 @@ export const store = configureStore({
       CategoriesApi.middleware,
       SubCategoriesApi.middleware,
       BaseApi.middleware,
-      ItemsApi.middleware
+      ItemsApi.middleware,
+      AuthApi.middleware
     ]),
   // Explicitly configure devTools based on environment
   devTools: process.env.NODE_ENV !== "production",

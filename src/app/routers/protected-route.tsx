@@ -1,0 +1,25 @@
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/app/store'
+import { useNavigate } from 'react-router-dom'
+
+interface ProtectedRouteProps {
+  children: React.ReactNode
+}
+
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  const accessToken = useSelector((state: RootState) => state.auth.token)
+  const navigate = useNavigate()
+  console.log(accessToken)
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/login', { replace: true })
+    }
+  }, [accessToken, navigate])
+
+  if (!accessToken) {
+    return null 
+  }
+
+  return <>{children}</>
+}

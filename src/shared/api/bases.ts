@@ -1,23 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { IBase,IBaseResponse,IGetBasesResponse,IGetBaseResponse,ICreateBaseResponse/* IBaseResponseObject */ } from "../model/base";
-
+import { baseQueryWithReauth } from "./baseQuery";
 
 export const BaseApi = createApi({
   reducerPath: "BaseApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://api1.dozzer.uz/api",
-    prepareHeaders: (headers) => {
-      headers.set("Accept", "application/json");
-      headers.set("Content-Type", "application/json");
-
-      const apiKey = import.meta.env.VITE_API_KEY;
-      if (apiKey) {
-        headers.set("Authorization", `Bearer ${apiKey}`);
-      }
-
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ["Base"],
   endpoints: (builder) => ({
 
