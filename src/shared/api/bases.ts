@@ -48,6 +48,6 @@ export const BaseApi = createApi({
 export const {
   useCreateBaseMutation,
   useGetBasesQuery,
-  useGetBaseByIdQuery,
+  useLazyGetBaseByIdQuery,
   useUpdateBaseMutation,
 } = BaseApi;

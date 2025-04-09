@@ -16,11 +16,6 @@ import Icon from "/icons/icon-64x64.png"
 import { navMain } from "../model";
 import { NavUser } from "./nav-user";
 
-const user = {
-  name: "shadcn",
-  email: "m@example.com",
-}
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const navigateTo = useNavigate();
   const location = useLocation();
@@ -77,7 +72,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user} />
+        <NavUser/>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

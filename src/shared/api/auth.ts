@@ -14,6 +14,7 @@ export const AuthApi = createApi({
                 method: 'POST',
                 body: user,
             }),
+            invalidatesTags: ["Athentication"]
         }),
     }),
 });

@@ -7,7 +7,10 @@ import { useState } from "react"
 import { useLoginMutation } from "@/shared/api/auth"
 import { IUser } from "@/shared/model/authentication"
 import { toast } from "sonner"
-import { replace, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { IAuthTokensResponse } from "@/shared/model/authentication"
+import { authTokenChange } from "@/shared/hooks/authSlice"
+import { useDispatch } from "react-redux"
 
 export function LoginForm({
     className,
@@ -20,27 +23,39 @@ export function LoginForm({
 
     const navigate = useNavigate()
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
+    const dispatch = useDispatch();
 
-        const user: IUser = { login: username, password }
+const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-        try {
+    const user: IUser = { login: username, password };
 
-            const response = await login(user).unwrap()
-            console.log(response)
+    try {
+        const response = await login(user).unwrap();
+        console.log("Login response:", response);
 
-            if (!response.error) {
-                toast.success("Logged successfully!");
-            }
+        const tokenData = (response as IAuthTokensResponse)?.data?.token;
 
-            navigate("/",{ replace: true })
+        if (tokenData?.Access && tokenData?.Refresh) {
+            dispatch(
+                authTokenChange({
+                    accessToken: tokenData.Access,
+                    refreshToken: tokenData.Refresh,
+                })
+            );
 
-        } catch (err) {
-            toast.error("Something went wrong!");
-            console.error("Login failed", err)
+            toast.success("Logged in successfully!");
+
+            navigate("/dashboard"); 
+        } else {
+            toast.error("Token data is missing in response.");
         }
+
+    } catch (err) {
+        toast.error("Login failed. Please check your credentials.");
+        console.error("Login error:", err);
     }
+};
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>

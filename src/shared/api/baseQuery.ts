@@ -32,30 +32,32 @@ export const baseQueryWithReauth: BaseQueryFn<
 
   const authState = (store.getState() as RootState).auth;
 
-  console.log(authState)
-
   if (result.error && result.error.status === 401) {
     if (!authState.token || !authState.refreshToken) return result;
 
-    // Update token to use refresh token
+    // Обновляем usedToken на refreshToken
     store.dispatch(adjustUsedToken(authState.refreshToken as string));
 
-    // Try to refresh the token
+    // Пробуем обновить токены
     const refreshResult = await baseQuery("/refresh-token", store, extraOptions);
 
-    if (refreshResult.data) {
-      // Store the new tokens
+    const tokenData = (refreshResult.data as any)?.data?.token;
+
+    if (tokenData?.Access && tokenData?.Refresh) {
+      // Сохраняем новые токены
       store.dispatch(
         authTokenChange({
-          accessToken: (refreshResult.data as any).accessToken,
-          refreshToken: authState.refreshToken as string,
+          accessToken: tokenData.Access,
+          refreshToken: tokenData.Refresh,
         })
       );
-      // Retry the original request
+
+      // Повторяем оригинальный запрос
       result = await baseQuery(args, store, extraOptions);
     } else {
       store.dispatch(logoutUser());
     }
   }
+
   return result;
 };
