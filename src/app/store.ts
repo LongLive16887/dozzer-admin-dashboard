@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { CategoriesApi , SubCategoriesApi,BaseApi,ItemsApi} from "@/shared/api";
+import { CategoriesApi , SubCategoriesApi,BaseApi,ItemsApi,UserApi,AuthApi} from "@/shared/api";
 import { languageReducer } from "@/shared/hooks";
+import authReducer from "@/shared/hooks/authSlice"
 
 export const store = configureStore({
   reducer: {
@@ -8,13 +9,14 @@ export const store = configureStore({
     [SubCategoriesApi.reducerPath]: SubCategoriesApi.reducer,
     [BaseApi.reducerPath]: BaseApi.reducer,
     [ItemsApi.reducerPath]: ItemsApi.reducer,
+    [AuthApi.reducerPath]: AuthApi.reducer,
+    [UserApi.reducerPath]: UserApi.reducer,
     language: languageReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      // Optional: Configure if you need to handle non-serializable values
       serializableCheck: {
-        // Ignore specific actions or paths if needed
         ignoredActions: [],
         ignoredPaths: [],
       },
@@ -22,12 +24,12 @@ export const store = configureStore({
       CategoriesApi.middleware,
       SubCategoriesApi.middleware,
       BaseApi.middleware,
-      ItemsApi.middleware
+      ItemsApi.middleware,
+      AuthApi.middleware,
+      UserApi.middleware
     ]),
-  // Explicitly configure devTools based on environment
   devTools: process.env.NODE_ENV !== "production",
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

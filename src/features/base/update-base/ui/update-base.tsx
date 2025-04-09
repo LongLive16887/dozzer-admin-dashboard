@@ -13,19 +13,25 @@ import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
 import { toast } from "sonner";
-import { useGetBaseByIdQuery, useUpdateBaseMutation } from "@/shared/api/bases";
+import { useLazyGetBaseByIdQuery, useUpdateBaseMutation } from "@/shared/api/bases";
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from "react-leaflet";
 import { UseMyLocationButton } from "../../shared/useMyLocation-button";
 import L from "leaflet";
 
 export const UpdateBase = ({ updateBaseId }: { updateBaseId: string }) => {
-  const { data: baseData, isLoading: isFetching } = useGetBaseByIdQuery(updateBaseId);
+  const [trigger, { data: baseData, isLoading: isFetching, error }] = useLazyGetBaseByIdQuery();
   const [updateBase, { isLoading: isUpdating }] = useUpdateBaseMutation();
 
   const [name, setName] = useState("");
   const [lat, setLat] = useState<number | null>(null);
   const [long, setLong] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (showModal) {
+      trigger(updateBaseId);
+    }
+  }, [showModal, trigger, updateBaseId]);
 
   useEffect(() => {
     if (baseData?.data) {
@@ -71,7 +77,6 @@ export const UpdateBase = ({ updateBaseId }: { updateBaseId: string }) => {
     return null;
   };
   
-
   const customIcon = new L.Icon({
     iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
     iconSize: [25, 41],
@@ -82,7 +87,7 @@ export const UpdateBase = ({ updateBaseId }: { updateBaseId: string }) => {
     <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>
         <Button className="cursor-pointer min-w-[40px]" variant="default" disabled={isFetching}>
-          <Pencil/>
+          <Pencil />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] sm:max-h-[650px] overflow-scroll">
@@ -92,8 +97,12 @@ export const UpdateBase = ({ updateBaseId }: { updateBaseId: string }) => {
             Complete the form to update an existing base
           </DialogDescription>
         </DialogHeader>
-        {isFetching || lat === null || long === null ? (
+        {isFetching ? (
           <p>Loading...</p>
+        ) : error ? (
+          <p>Error loading base data!</p>
+        ) : lat === null || long === null ? (
+          <p>Invalid coordinates!</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 py-4">

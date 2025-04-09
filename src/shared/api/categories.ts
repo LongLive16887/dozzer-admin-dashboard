@@ -1,22 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {ICategory,ICategoryResponse,IGetCategoryResponse,IDeleteCategoryResponse} from "../model/categories";
-
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { ICategory, ICategoryResponse, IGetCategoryResponse, IDeleteCategoryResponse } from "../model/categories";
+import { baseQueryWithReauth } from "./baseQuery";
 export const CategoriesApi = createApi({
   reducerPath: "CategoriesApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://api1.dozzer.uz/api",
-    prepareHeaders: (headers) => {
-      headers.set("Accept", "application/json");
-      headers.set("Content-Type", "application/json");
-
-      const apiKey = import.meta.env.VITE_API_KEY;
-      if (apiKey) {
-        headers.set("Authorization", `Bearer ${apiKey}`);
-      }
-
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ["Category"],
   endpoints: (builder) => ({
 
@@ -30,14 +17,14 @@ export const CategoriesApi = createApi({
     }),
 
     getCategories: builder.query<IGetCategoryResponse, void>({
-        query: () => ({
-          url: "/v1/base/category",
-          method: "GET",
-        }),
-        providesTags: ["Category"],
+      query: () => ({
+        url: "/v1/base/category",
+        method: "GET",
       }),
-      
-    updateCategory: builder.mutation<ICategoryResponse,{ id: string; category: ICategory }>({
+      providesTags: ["Category"],
+    }),
+
+    updateCategory: builder.mutation<ICategoryResponse, { id: string; category: ICategory }>({
       query: ({ id, category }) => ({
         url: `/v1/base/category/${id}`,
         method: "PUT",
@@ -47,11 +34,11 @@ export const CategoriesApi = createApi({
     }),
 
     deleteCategory: builder.mutation<IDeleteCategoryResponse, string>({
-        query: (id) => ({
-            url: `/v1/base/category/${id}`,
-            method: "DELETE",
-        }),
-        invalidatesTags: ["Category"],
+      query: (id) => ({
+        url: `/v1/base/category/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Category"],
     }),
 
     /* serveCategoryIcon: builder.query<ICategoryResponse, string>({
@@ -61,7 +48,7 @@ export const CategoriesApi = createApi({
       }),
       providesTags: ["Category"],
     }), */
-    
+
   }),
 });
 

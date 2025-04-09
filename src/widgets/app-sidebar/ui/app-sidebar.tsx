@@ -10,9 +10,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  SidebarFooter
 } from "@/shared/ui/sidebar";
 import Icon from "/icons/icon-64x64.png"
 import { navMain } from "../model";
+import { NavUser } from "./nav-user";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const navigateTo = useNavigate();
@@ -69,6 +71,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser/>
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
