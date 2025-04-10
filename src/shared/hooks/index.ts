@@ -4,8 +4,12 @@ import languageReducer, {
   setAvailableLanguages,
   setLanguage,
 } from "./language-slice";
+import authReducer from "./authSlice"
+import superAdminReducer from "./superAdminSlice"
 
 export {
+  superAdminReducer,
+  authReducer,
   useIsMobile,
   languageReducer,
   languageSlice,

@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { CategoriesApi , SubCategoriesApi,BaseApi,ItemsApi,UserApi,AuthApi} from "@/shared/api";
-import { languageReducer } from "@/shared/hooks";
-import authReducer from "@/shared/hooks/authSlice"
+import { CategoriesApi , SubCategoriesApi,BaseApi,ItemsApi,UserApi,AuthApi,superAdminApi} from "@/shared/api";
+import { languageReducer,authReducer,superAdminReducer } from "@/shared/hooks";
 
 export const store = configureStore({
   reducer: {
@@ -11,8 +10,10 @@ export const store = configureStore({
     [ItemsApi.reducerPath]: ItemsApi.reducer,
     [AuthApi.reducerPath]: AuthApi.reducer,
     [UserApi.reducerPath]: UserApi.reducer,
+    [superAdminApi.reducerPath]: superAdminApi.reducer,
     language: languageReducer,
     auth: authReducer,
+    superAdmin: superAdminReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -26,7 +27,8 @@ export const store = configureStore({
       BaseApi.middleware,
       ItemsApi.middleware,
       AuthApi.middleware,
-      UserApi.middleware
+      UserApi.middleware,
+      superAdminApi.middleware
     ]),
   devTools: process.env.NODE_ENV !== "production",
 });

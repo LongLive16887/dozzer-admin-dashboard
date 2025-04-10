@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy } from "react";
 import { ProtectedRoute } from "./protected-route";
-import { PublicRoute } from "./public-route";
+import { SuperProtectedRoute } from "./superProtectedRoute";
 
 const DashboardPage = lazy(() => import('@/pages/Dashboard'))
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'))
@@ -9,6 +9,8 @@ const SubcategoriesPage = lazy(() => import('@/pages/SubcategoriesPage'))
 const BasePage = lazy(() => import('@/pages/BasePage'))
 const ItemsPage = lazy(() => import('@/pages/ItemsPage'))
 const LoginPage = lazy(() => import('@/pages/LoginPage'))
+const SuperAdminLoginPage = lazy(() => import('@/pages/SuperAdminLoginPage'))
+const SuperAdminPanelPage = lazy(() => import('@/pages/SuperAdminPanelPage'))
 
 export const AppRouter = () => {
   const routerConfig = createBrowserRouter([
@@ -54,10 +56,20 @@ export const AppRouter = () => {
     },
     {
       path: '/login',
-      element: (
-        <PublicRoute>
+      element: 
           <LoginPage />
-        </PublicRoute>
+    },
+    {
+      path: '/super-login',
+      element: 
+          <SuperAdminLoginPage />
+    },
+    {
+      path: '/super-admin',
+      element: (
+        <SuperProtectedRoute>
+          <SuperAdminPanelPage />
+        </SuperProtectedRoute>
       ),
     },
   ])
