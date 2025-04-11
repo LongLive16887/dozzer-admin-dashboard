@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit/query";
 import { API_BASE_URL } from "../constants/api";
 import { RootState } from "@/app/store";
-import { adjustUsedToken, authTokenChange, logoutUser } from "@/shared/hooks/authSlice";
+import { authTokenChange, logoutUser } from "@/shared/hooks/authSlice";
 
 // Базовый запрос с токеном
 const baseQuery = fetchBaseQuery({
@@ -20,19 +20,31 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
+const isUnauthorizedError = (error: unknown): boolean => {
+  if (!error || typeof error !== "object") return false;
+
+  const err = error as FetchBaseQueryError;
+
+  return (
+    err?.status === 401 ||
+    (typeof err?.data === "object" &&
+      (err.data as any)?.status === 401)
+  );
+};
+
+
 export const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  console.log(result)
+  
   const authState = (api.getState() as RootState).auth;
-  console.log(authState)
-  if (result.error && result.error.status === 401) {
+  
+  if (isUnauthorizedError(result.error)) {
     if (!authState.refreshToken) return result;
 
-    // ⚠️ Отправляем refreshToken запрос без Authorization
     const refreshBaseQuery = fetchBaseQuery({ baseUrl: API_BASE_URL });
 
     const refreshResult = await refreshBaseQuery(
@@ -47,12 +59,9 @@ export const baseQueryWithReauth: BaseQueryFn<
       extraOptions
     );
 
-    console.log("refreshResult", refreshResult);
-
     const tokenData = (refreshResult.data as any)?.data?.token;
-
+    
     if (tokenData?.Access && tokenData?.Refresh) {
-      // Сохраняем новые токены
       api.dispatch(
         authTokenChange({
           accessToken: tokenData.Access,
@@ -60,7 +69,6 @@ export const baseQueryWithReauth: BaseQueryFn<
         })
       );
 
-      // Повторяем запрос с новым accessToken
       result = await baseQuery(args, api, extraOptions);
     } else {
       api.dispatch(logoutUser());

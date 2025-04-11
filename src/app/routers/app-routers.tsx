@@ -1,16 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy } from "react";
 import { ProtectedRoute } from "./protected-route";
-import { SuperProtectedRoute } from "./superProtectedRoute";
+import { PublicRoute } from "./public-route";
 
+// Ленивая загрузка страниц
 const DashboardPage = lazy(() => import('@/pages/Dashboard'))
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'))
 const SubcategoriesPage = lazy(() => import('@/pages/SubcategoriesPage'))
 const BasePage = lazy(() => import('@/pages/BasePage'))
 const ItemsPage = lazy(() => import('@/pages/ItemsPage'))
 const LoginPage = lazy(() => import('@/pages/LoginPage'))
-const SuperAdminLoginPage = lazy(() => import('@/pages/SuperAdminLoginPage'))
 const SuperAdminPanelPage = lazy(() => import('@/pages/SuperAdminPanelPage'))
+const NotFoundPage = lazy(() => import('@/pages/404Page'))
 
 export const AppRouter = () => {
   const routerConfig = createBrowserRouter([
@@ -56,21 +57,20 @@ export const AppRouter = () => {
     },
     {
       path: '/login',
-      element: 
+      element:
+        <PublicRoute>
           <LoginPage />
-    },
-    {
-      path: '/super-login',
-      element: 
-          <SuperAdminLoginPage />
+        </PublicRoute>
     },
     {
       path: '/super-admin',
       element: (
-        <SuperProtectedRoute>
-          <SuperAdminPanelPage />
-        </SuperProtectedRoute>
+        <SuperAdminPanelPage />
       ),
+    },
+    {
+      path: '*',  
+      element: <NotFoundPage />,
     },
   ])
 

@@ -27,16 +27,16 @@ export function NavUser() {
   const { data: user } = useGetUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
-  const displayName = user?.data.name || "User";
-  const displayPhone = user?.data.phone_number || "+998999999999";
+  const displayName = user?.data.name || "user";
+  const displayPhone = user?.data.phone_number || "+998";
 
   const [name, setName] = useState(displayName);
   const [phone, setPhone] = useState(displayPhone);
 
   useEffect(() => {
     if (user) {
-      setName(user.data.name || "User");
-      setPhone(user.data.phone_number || "+998999999999");
+      setName(user.data.name || "user");
+      setPhone(user.data.phone_number || "+998");
     }
   }, [user]);
 
@@ -48,6 +48,10 @@ export function NavUser() {
     } catch (error) {
       toast.error("Something went wrong");
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
   };
 
   return (
@@ -103,7 +107,7 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="gap-2 cursor-pointer"
-              onClick={() => dispatch(logoutUser())}
+              onClick={handleLogout}
             >
               <LogOutIcon size={16} />
               Log out

@@ -1,7 +1,13 @@
+import { SuperAdmin } from "@/widgets/super-admin/superAdmin";
 
 const SuperAdminPanelPage = () => {
-    return <div className="p-6 text-lg font-semibold">Добро пожаловать, Супер Админ!</div>;
-  };
-  
-  export default SuperAdminPanelPage;
-  
+  return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="w-100">  
+        <SuperAdmin />
+      </div>
+    </div>
+  );
+};
+
+export default SuperAdminPanelPage;

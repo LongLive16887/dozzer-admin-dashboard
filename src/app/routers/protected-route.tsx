@@ -10,15 +10,14 @@ interface ProtectedRouteProps {
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const accessToken = useSelector((state: RootState) => state.auth.token)
   const navigate = useNavigate()
-  console.log(accessToken)
   useEffect(() => {
     if (!accessToken) {
-      navigate('/login', { replace: true })
+      window.location.replace("/login");
     }
   }, [accessToken, navigate])
 
   if (!accessToken) {
-    return null 
+    return null
   }
 
   return <>{children}</>
